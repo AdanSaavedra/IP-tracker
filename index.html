@@ -29,15 +29,37 @@
     <style>
       #map {
         height: 580px;
-
       }
     </style>
   </head>
   <body>
-    IP Address Tracker Search for any IP address or domain IP Address Location
-    Timezone UTC
-    <!-- add offset value dynamically using the API -->
-    ISP
+    <main>
+      <h1>IP Address Tracker</h1>
+      <form action="">
+        <input type="text" name="" id="" />
+        <button type="button">
+          <img src="./images/icon-arrow.svg" alt="" />
+        </button>
+      </form>
+      <section class="info">
+        <div class="ipAddress infoCard">
+          <p class="title">IP ADDRESS</p>
+          <p class="dataText ipText"></p>
+        </div>
+        <div class="location infoCard">
+          <p class="title">LOCATION</p>
+          <p class="dataText locationText"></p>
+        </div>
+        <div class="timezone infoCard">
+          <p class="title">TIMEZONE</p>
+          <p class="dataText timezoneText"></p>
+        </div>
+        <div class="isp infoCard">
+          <p class="title">ISP</p>
+          <p class="dataText ispText"></p>
+        </div>
+      </section>
+    </main>
 
     <div id="map"></div>
   </body>
