@@ -9,8 +9,6 @@
 body {
   width: 100vw;
   height: 100vh;
-  /* display: grid;
-  grid-template-rows: 30% 70%; */
   color: var(--white);
   font-family: "Rubik", sans-serif;
   font-size: 18px;
