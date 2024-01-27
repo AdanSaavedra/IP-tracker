@@ -1,3 +1,4 @@
+//Variables
 const ipp = document.querySelector(".ipText");
 const locationn = document.querySelector(".locationText");
 const timezone = document.querySelector(".timezoneText");
@@ -13,20 +14,25 @@ var tileLayer = L.tileLayer(
   }
 );
 
+//Using the API and printing the data obtained
 fetch(
   "https://api.ipgeolocation.io/ipgeo?apiKey=208f5ca499974e30a1231096d09001fc"
 )
   .then((response) => response.json())
   .then((data) => {
-    initMap(data.latitude, data.longitude);
-    ipp.innerHTML = `${data.ip}`;
-    locationn.innerHTML = `${data.city}, ${data.country_capital}`;
-    timezone.innerHTML = `${data.time_zone.offset}`;
-    isp.innerHTML = `${data.isp}`;
+    printData(data);
   })
   .catch((error) => console.error("Error with the location: ", error));
 
+ipForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let newIp = document.getElementById("newIp").value;
+  searchIp(newIp);
+});
+
+//Functions
 function initMap(latitude, longitude) {
+  //Verifying if map is started
   if (map) {
     map.setView([latitude, longitude], 17);
   } else {
@@ -36,21 +42,13 @@ function initMap(latitude, longitude) {
 
   var myIcon = L.icon({
     iconUrl: "./images/icon-location.svg",
-    // iconSize: [38, 95],
-    // iconAnchor: [22, 94],
-    // popupAnchor: [-3, -76],
-    // shadowAnchor: [22, 94],
+    iconSize: [38, 95],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+    shadowAnchor: [22, 94],
   });
   L.marker([latitude, longitude], { icon: myIcon }).addTo(map);
 }
-
-ipForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  let newIp = document.getElementById("newIp").value;
-  console.log(newIp);
-  searchIp(newIp);
-});
 
 const searchIp = (ip) => {
   map.removeLayer(tileLayer);
@@ -59,12 +57,15 @@ const searchIp = (ip) => {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      initMap(data.latitude, data.longitude);
-      ipp.innerHTML = `${data.ip}`;
-      locationn.innerHTML = `${data.city}, ${data.country_capital}`;
-      timezone.innerHTML = `${data.time_zone.offset}`;
-      isp.innerHTML = `${data.isp}`;
+      printData(data);
     })
     .catch((error) => console.error("Error with the location: ", error));
+};
+
+const printData = (data) => {
+  initMap(data.latitude, data.longitude);
+  ipp.innerHTML = `${data.ip}`;
+  locationn.innerHTML = `${data.city}, ${data.country_capital}`;
+  timezone.innerHTML = `UTC ${data.time_zone.offset}:00`;
+  isp.innerHTML = `${data.isp}`;
 };

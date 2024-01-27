@@ -95,3 +95,40 @@ main {
 .timezone {
   border-right: 1px solid hsl(0, 1%, 79%);
 }
+
+@media (max-width: 375px) {
+  main {
+    background-image: url("./images/pattern-bg-mobile.png");
+  }
+  .mainTitle {
+    font-size: 25px;
+  }
+  .info {
+    flex-direction: column;
+    height: 100%;
+    width: 88%;
+    padding: 0;
+    text-align: center;
+    bottom: -168px;
+  }
+  .title {
+    margin-bottom: 4px;
+  }
+  .infoCard {
+    height: auto;
+  }
+  #ipForm {
+    width: 88%;
+  }
+  .dataText {
+    font-size: 20px;
+  }
+  .ipAddress,
+  .location,
+  .timezone {
+    border-right: none;
+  }
+  #newIp {
+    font-size: 14px;
+  }
+}
